@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>The Hot Express</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1><i class="fa fa-fire icon-large"></i> Hot Restaurant</h1>
+            <hr>
+            <h3>Book your seats before they are all gone!</h3>
+            <br>
+            <a href="../hot-restaurant/home.html"><button class="btn btn-info btn-lg home-btn"><span
+                        class="fa fa-home"></span></button></a>
+            <a href="../hot-restaurant/tables.html"><button class="btn btn-primary btn-lg home-btn"><span
+                        class="fa fa-list"></span>
+                    View
+                    Tables</button></a>
+            <a href="../hot-restaurant/reserve.html"><button class="btn btn-danger btn-lg home-btn"><span
+                        class="fa fa-credit-card"></span> Get
+                    Reservation</button></a>
+        </div>
+        <div class="row">
+
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3><strong>Book your Reservation!</strong></h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="POST" role="form">
+
+                            <div class="form-group">
+                                <div class="col-12">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="John Doe">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-12">
+                                    <label for="role">Number of Guests</label>
+                                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+                                        <option selected>Choose...</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="1">4</option>
+                                        <option value="2">5</option>
+                                        <option value="3">6</option>
+                                        <option value="1">7</option>
+                                        <option value="2">8</option>
+                                        <option value="3">9+</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="example-datetime-local-input" class="col-2 col-form-label">Date and
+                                    time</label>
+                                <div class="col-12">
+                                    <input class="form-control" type="datetime-local" value="2020-03-11T13:45:00"
+                                        id="example-datetime-local-input">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-12">
+                                    <label for="force-points">Phone Number</label>
+                                    <input type="text" class="form-control" id="force-points"
+                                        placeholder="(###) ###-####">
+                                </div>
+                            </div>
+
+                        </form>
+                        <br>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span
+                                    class="fa fa-paper-plane-o"></span> Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // Question: What does this code do?
+        $("#add-btn").on("click", function (event) {
+            event.preventDefault();
+            var newCharacter = {
+                name: $("#name").val().trim(),
+                role: $("#role").val().trim(),
+                age: $("#age").val().trim(),
+                forcePoints: $("#force-points").val().trim()
+            };
+
+            // Question: What does this code do??
+            $.post("/api/characters", newCharacter)
+                .then(function (data) {
+                    console.log("add.html", data);
+                    alert("Adding character...");
+                });
+        });
+    </script>
+
+</body>
+
+</html>
