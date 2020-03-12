@@ -40,3 +40,40 @@ var newReservation = req.body;
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
+
+var guestList = []
+
+// function Guest(name, number, amount, id){
+//   this.name = name,
+//   this.number = number,
+//   this.amount = amount,
+//   this.id = id
+// }
+
+
+// Create New Guests
+app.post("/api/waitlist", function(req, res) {
+  var newGuest = req.body;
+
+  newGuest.routeName = newGuest.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newGuest);
+
+  guestList.push(newGuest);
+
+  res.json(newGuest);
+});
+
+var reservList = [];
+
+app.post("/api/reservations", function(req, res) {
+  var newGuest = req.body;
+
+  newGuest.routeName = newGuest.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newGuest);
+
+  reservList.push(newGuest);
+
+  res.json(newGuest);
+});
