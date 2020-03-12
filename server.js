@@ -34,7 +34,7 @@ var guestList = []
 
 
 // Create New Guests
-app.post("/api/reservations", function(req, res) {
+app.post("/api/waitlist", function(req, res) {
   var newGuest = req.body;
 
   newGuest.routeName = newGuest.name.replace(/\s+/g, "").toLowerCase();
@@ -42,6 +42,20 @@ app.post("/api/reservations", function(req, res) {
   console.log(newGuest);
 
   guestList.push(newGuest);
+
+  res.json(newGuest);
+});
+
+var reservList = [];
+
+app.post("/api/reservations", function(req, res) {
+  var newGuest = req.body;
+
+  newGuest.routeName = newGuest.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newGuest);
+
+  reservList.push(newGuest);
 
   res.json(newGuest);
 });
